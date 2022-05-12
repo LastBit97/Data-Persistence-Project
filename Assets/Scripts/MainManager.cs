@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +10,7 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text BestScore;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -36,6 +36,7 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+        BestScore.text = Singleton.Instance.PlayerName;
     }
 
     private void Update()
@@ -69,7 +70,7 @@ public class MainManager : MonoBehaviour
     }
 
     public void GameOver()
-    {
+    {       
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
