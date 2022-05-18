@@ -23,7 +23,7 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         if (DataManager.Instance != null)
-            BestResult.text = $"Best Score. {DataManager.Instance?.PlayerName} : {DataManager.Instance.BestScore}";
+            BestResult.text = $"Best Score. {DataManager.Instance?.BestScorePlayer} : {DataManager.Instance.BestScore}";
 
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -76,7 +76,8 @@ public class MainManager : MonoBehaviour
         if (DataManager.Instance != null && m_Points > DataManager.Instance.BestScore)
         {
             DataManager.Instance.BestScore = m_Points;
-            BestResult.text = $"Best Score {DataManager.Instance?.PlayerName} : {DataManager.Instance.BestScore}";
+            DataManager.Instance.BestScorePlayer = DataManager.Instance.PlayerName;
+            BestResult.text = $"Best Score {DataManager.Instance?.BestScorePlayer} : {DataManager.Instance.BestScore}";
         }           
         
         m_GameOver = true;

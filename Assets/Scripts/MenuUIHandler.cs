@@ -3,17 +3,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[DefaultExecutionOrder(1000)]
 public class MenuUIHandler : MonoBehaviour
 {   
     [SerializeField]
     private Text _playerName;
     [SerializeField]
     private Text _bestScore;
+    [SerializeField]
+    private InputField _inputText;
 
     private void Start()
     {
         DataManager.Instance.LoadData();
-        _bestScore.text = $"Best Score. {DataManager.Instance?.PlayerName} : {DataManager.Instance.BestScore}";
+        _bestScore.text = $"Best Score. {DataManager.Instance?.BestScorePlayer} : {DataManager.Instance.BestScore}";
+        if (DataManager.Instance.BestScorePlayer != null)
+            _inputText.text = DataManager.Instance.BestScorePlayer;
+
     }
     public void StartNew()
     {

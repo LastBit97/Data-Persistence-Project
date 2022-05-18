@@ -8,6 +8,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
 
     public string PlayerName;
+    public string BestScorePlayer;
     public int BestScore;
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class DataManager : MonoBehaviour
     public void SaveData()
     {
         var data = new SerializableData();
-        data.PlayerName = PlayerName;
+        data.PlayerName = BestScorePlayer;
         data.BestScore = BestScore;
 
         string json = JsonUtility.ToJson(data);
@@ -44,7 +45,7 @@ public class DataManager : MonoBehaviour
             string json = File.ReadAllText(path);
             var data = JsonUtility.FromJson<SerializableData>(json);
 
-            PlayerName = data.PlayerName;
+            BestScorePlayer = data.PlayerName;
             BestScore = data.BestScore;
         }
     }
